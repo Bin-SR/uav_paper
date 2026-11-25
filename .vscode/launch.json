@@ -1,0 +1,214 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Train GRaD-Nav long traj",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_gradnav.py",
+            "args": [
+                "--cfg", "examples/cfg/gradnav/drone_long_traj.yaml",
+                "--logdir", "examples/logs/DroneLongTraj/gradnav",
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Test GRaD-Nav long traj",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_gradnav.py",
+            "args": [
+                "--cfg", "examples/cfg/gradnav/drone_long_traj.yaml",
+                "--checkpoint", "examples/logs/DroneLongTraj/gradnav/gate_mid/06-12-2025-12-13-45/best_policy.pt",
+                "--play",
+                "--render"
+            ],
+            "console": "integratedTerminal"
+        },
+
+
+        {
+            "name": "Train GRaD-Nav multi gate",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_gradnav.py",
+            "args": [
+                "--cfg", "examples/cfg/gradnav/drone_multi_gate.yaml",
+                "--logdir", "examples/logs/DroneMultiGate/gradnav",
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Test GRaD-Nav multi gate",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_gradnav.py",
+            "args": [
+                "--cfg", "examples/cfg/gradnav/drone_multi_gate.yaml", 
+                "--checkpoint", "examples/logs/DroneMultiGate/gradnav/gate_mid/03-08-2025-16-22-34/best_policy.pt",
+                "--play",
+                "--render"
+            ],
+            "console": "integratedTerminal"
+        },
+
+        // baseline training with PPO
+        {
+            "name": "Train PPO long traj",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_ppo.py",
+            "args": [
+                "--cfg", "examples/cfg/ppo/drone_ppo.yaml",
+                "--logdir", "examples/logs/DronePPO/ppo",
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Test PPO long traj",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_ppo.py",
+            "args": [
+                "--cfg", "examples/cfg/ppo/drone_ppo.yaml",
+                "--checkpoint", "examples/logs/DronePPO/ppo/gate_mid/12-30-2024-12-18-23_SOTA/best_policy.pt",
+                "--play",
+                "--render"
+            ],
+            "console": "integratedTerminal"
+        },
+
+        {
+            "name": "Train BPTT long traj",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_bptt.py",
+            "args": [
+                "--cfg", "examples/cfg/bptt/drone_long_traj.yaml",
+                "--logdir", "examples/logs/DroneLongTraj/bptt",
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Test BPTT long traj",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_bptt.py",
+            "args": [
+                "--cfg", "examples/cfg/bptt/drone_long_traj.yaml", 
+                "--checkpoint", "examples/logs/DroneLongTraj/bptt/gate_mid/03-01-2025-22-59-24/best_policy.pt",
+                "--play",
+                "--render"
+            ],
+            "console": "integratedTerminal"
+        },
+
+        // ===== GRaD-Nav++ ====
+        {
+            "name": "Train GRaD-Nav VLA long task MLP",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_gradnav_vla_mlp.py",
+            "args": [
+                "--cfg", "examples/cfg/gradnav_vla_mlp/drone_long_task.yaml",
+                "--logdir", "examples/logs/DroneVLALongTaskEnv/gradnav_MLP",
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Test GRaD-Nav VLA long task MLP",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_gradnav_vla_mlp.py",
+            "args": [
+                "--cfg", "examples/cfg/gradnav_vla_mlp/drone_long_task.yaml",
+                "--logdir", "examples/logs/DroneVLALongTaskEnv/gradnav_MLP",
+                "--checkpoint", "examples/logs/DroneVLALongTaskEnv/gradnav_MLP/<MAP_NAME>/<TIME_STAMP>/final_policy.pt",
+                "--play",
+                "--render"
+            ],
+            "console": "integratedTerminal"
+        },
+
+        {
+            "name": "Train GRaD-Nav VLA multi map MLP",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_gradnav_vla_mlp.py",
+            "args": [
+                "--cfg", "examples/cfg/gradnav_vla_mlp/drone_multi_map.yaml",
+                "--logdir", "examples/logs/DroneVLAMultiMapEnv/gradnav_MLP",
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Test GRaD-Nav VLA multi map MLP",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_gradnav_vla_mlp.py",
+            "args": [
+                "--cfg", "examples/cfg/gradnav_vla_mlp/drone_multi_map.yaml",
+                "--logdir", "examples/logs/DroneVLAMultiMapEnv/gradnav_MLP",
+                "--checkpoint", "examples/logs/DroneVLAMultiMapEnv/gradnav_MLP/<MAP_NAME>/<TIME_STAMP>/final_policy.pt",
+                "--play",
+                "--render"
+            ],
+            "console": "integratedTerminal"
+        },
+
+        {
+            "name": "Train GRaD-Nav VLA long task MoE",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_gradnav_vla_moe.py",
+            "args": [
+                "--cfg", "examples/cfg/gradnav_vla_moe/drone_long_task.yaml",
+                "--logdir", "examples/logs/DroneVLALongTaskEnv/gradnav_MoE",
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Test GRaD-Nav VLA long task MoE",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_gradnav_vla_moe.py",
+            "args": [
+                "--cfg", "examples/cfg/gradnav_vla_moe/drone_long_task.yaml",
+                "--logdir", "examples/logs/DroneVLALongTaskEnv/gradnav_MoE",
+                "--checkpoint", "examples/logs/DroneVLALongTaskEnv/gradnav_MoE/<MAP_NAME>/<TIME_STAMP>/final_policy.pt",
+                "--play",
+                "--render"
+            ],
+            "console": "integratedTerminal"
+        },
+
+        {
+            "name": "Train GRaD-Nav VLA multi map MoE",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_gradnav_vla_moe.py",
+            "args": [
+                "--cfg", "examples/cfg/gradnav_vla_moe/drone_multi_map.yaml",
+                "--logdir", "examples/logs/DroneVLAMultiMapEnv/gradnav_MoE",
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Test GRaD-Nav VLA multi map MoE",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/train_gradnav_vla_moe.py",
+            "args": [
+                "--cfg", "examples/cfg/gradnav_vla_moe/drone_multi_map.yaml",
+                "--logdir", "examples/logs/DroneVLAMultiMapEnv/gradnav_MoE",
+                "--checkpoint", "examples/logs/DroneVLAMultiMapEnv/gradnav_MoE/<MAP_NAME>/<TIME_STAMP>/final_policy.pt",
+                "--play",
+                "--render"
+            ],
+            "console": "integratedTerminal"
+        },
+
+    
+    ]
+}
