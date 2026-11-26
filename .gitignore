@@ -30,7 +30,7 @@ nerf_install/nerfstudio.egg-info/
 
 
 # *.png
-*.mp4
+# *.mp4
 *.ninja
 *.obj
 *.zip
