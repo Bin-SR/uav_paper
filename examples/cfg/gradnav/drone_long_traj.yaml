@@ -1,21 +1,21 @@
 params:  
   diff_env:
-    name: DroneLongTrajEnv
-    stochastic_env: True
-    episode_length: 600
+    name: DroneLongTrajEnv    # 在env/中有drone_long_traj.py文件
+    stochastic_env: True      # 随机环境开关
+    episode_length: 600       # 	单个 episode 的步数设置
     MM_caching_frequency: 16
 
   network:
     actor: ActorStochasticMLP # [ActorStochasticMLP, ActorDeterministicMLP]
     actor_mlp:
-      units: [512, 256, 128]
+      units: [512, 256, 128]  # 输入->512->256->128->输出
       activation: elu
 
     critic: CriticMLP
     critic_mlp:
       units: [512, 256, 128]
       activation: elu
-
+  # Variational Autoencoder，变分自编码器
   vae:
     kl_weight: 1.0
     encoder_units: [256, 256, 256]

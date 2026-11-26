@@ -1,0 +1,13 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index 6d284ae1..584d5e35 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -64,7 +64,7 @@ dependencies = [
+     "xatlas",
+     "trimesh>=3.20.2",
+     "timm==0.6.7",
+-    "gsplat==1.4.0",
++    "gsplat==1.5.3",
+     "pytorch-msssim",
+     "pathos",
+     "packaging",

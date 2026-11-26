@@ -90,8 +90,13 @@ class DroneLongTrajEnv(DFlexEnv):
         self.init_kd = [0.001, 0.001, 0.002]
 
         # GS model
+        ################
+        # 调用utils.gs_local
+        # 在环境构造函数中加载3DGS
+        ################
         gs_dir = Path("assets/gs_data")
         resolution_quality = 0.4
+        # 创建对象self.gs，来自gs_local.py中的Class GS()
         self.gs = get_gs(self.map_name, gs_dir, resolution_quality)
 
         self.init_sim()

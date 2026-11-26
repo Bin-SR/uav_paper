@@ -40,6 +40,7 @@ class GS():
         self.camera_out.rescale_output_resolution(res)
        
     def generate_output_camera(self,width:int,height:int):
+        # 生成虚拟相机，这是相机的内参
         fx,fy = 462.956,463.002
         cx,cy = 323.076,181.184
         
@@ -134,6 +135,8 @@ class GS():
 def get_gs(map: str, gs_path, resolution) -> 'GS':
     workspace_path = os.path.dirname(os.path.dirname(__file__))
     gs_data_root = os.path.join(workspace_path, "envs/assets/gs_data")
+    # 在 drone_long_traj.yaml中设置了map_name: gate_mid 
+    # 所以当前执行的就是"gate_mid": "sv_1007_gate_mid"
     maps = {
         "gate_left": "sv_917_3_left_nerfstudio",
         "gate_right": "sv_917_3_right_nerfstudio",
