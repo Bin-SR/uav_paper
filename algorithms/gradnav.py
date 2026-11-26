@@ -38,6 +38,9 @@ class BatchLowPassFilter:
 
 class GradNav:
     def __init__(self, cfg):
+        # 输入参数cfg，即导入*.yaml
+        # 对于drone_long_traj.yaml, env_fn就是DroneLongTrajEnv
+        # 对应drone_long_traj.py中的class DroneLongTrajEnv(DFlexEnv):
         env_fn = getattr(envs, cfg["params"]["diff_env"]["name"])
         self.map_name = cfg["params"]["config"].get("map_name", 'gate_mid')
 

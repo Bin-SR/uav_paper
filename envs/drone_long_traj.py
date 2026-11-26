@@ -18,7 +18,9 @@ np.set_printoptions(precision=5, linewidth=256, suppress=True)
 
 from utils import torch_utils as tu
 from utils.common import *
+# 3DGS入口
 from utils.gs_local import GS, get_gs
+
 from utils.rotation import quaternion_to_euler, quaternion_yaw_forward
 from utils.model import ModelBuilder
 from utils.point_cloud_util import ObstacleDistanceCalculator
@@ -613,6 +615,9 @@ class DroneLongTrajEnv(DFlexEnv):
         gs_pos = torso_pos + self.gs_origin_offset # (x, y, z)
         gs_pos[:, 1] = -gs_pos[:, 1]
         gs_pos[:, 2] = -gs_pos[:, 2]
+        ################# 
+        # self.device是cuda0, GPU设备，torch.zeros创建一个形状为[self.num_envs, 3]的张量，所有元素初始化为0，并将其放置在self.device上。
+        ################# 
         gs_pose = torch.cat([gs_pos, torch.zeros([self.num_envs, 3], device = self.device), torso_quat], dim=-1)
         rpy_data = rpy.clone().detach().cpu().numpy()
 
@@ -621,6 +626,9 @@ class DroneLongTrajEnv(DFlexEnv):
             # get visual data from 3DGS
             if self.gs_count % self.gs_freq == 0:
                 self.time_report.start_timer("3D GS inference")
+                ################################
+                # 调用self.gs对象中的render方法
+                ################################
                 depth_list, rgb_img = self.gs.render(gs_pose) # (batch_size,H,W,1/3)
                 self.process_GS_data(depth_list, rgb_img)
                 self.time_report.end_timer("3D GS inference")

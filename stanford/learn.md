@@ -338,7 +338,7 @@ Critic的维度67=27+16+24
 | $e_t$ | 16 | CNN提取的视觉特征 |
 | $z_t$ | 24 | CENet提取的潜在特征 |
 | 合计 | **57** | Actor完整输入 |  
-**注意** z和e的维度可能写反了，原文中z是16维
+**注意** z和e的维度可能写反了，原文中z是16维, e是24维
 paper中的策略：$π_θ(a_(t+1)|o_t, z_t, e_t)$
 
 Actor输入的17维观测：对应源码`envs/drone_long_traj.py`中的self.obs_buf  
@@ -448,4 +448,10 @@ SqueezeNet的参数不参与训练，主干网络是冻结的，不参与梯度�
 配置yaml中的参数，steps_num: 32  
 每次仅在一个较短的时间范围内(32步)展开动力学，再使用 Critic 估计未来的累计价值  
 
-#### 2.2.4 运行阶段：如何真正渲染RGB图像
+#### 2.2.4 运行阶段：如何真正渲染RGB图像  
+在`envs/drone_long_traj.py`中的`def calculateObservations(self):`  
+调用实例化的对象`self.gs`中的方法`self.gs.render`， render的输入gs_pose：无人机渲染位姿  
+gs_pose.shape = [num_envs, 10]  
+num_envs：batch_size,  
+10维度，是pose的组成：gs_pose = torch.cat([gs_pos, torch.zeros([self.num_envs, 3], device = self.device), torso_quat])
+self.device是cuda0, GPU设备，torch.zeros创建一个形状为[self.num_envs, 3]的张量，所有元素初始化为0，并将其放置在self.device上。

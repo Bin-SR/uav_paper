@@ -125,6 +125,9 @@ class GS():
         for i in range(batch_size):
             self.camera_out.camera_to_worlds = P_c2n_batch[i][None, :3, ...]
             # Render outputs
+            #################
+            # self.camera_out就是def generate_output_camera生成的虚拟相机
+            #################
             outputs = self.pipeline.model.get_outputs_for_camera(self.camera_out, obb_box=None)
             img_batch.append(outputs["rgb"])
             depth_batch.append(outputs["depth"])
